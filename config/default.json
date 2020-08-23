@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://varun:varun123@socialmedia.mkeha.mongodb.net/socialmedia?retryWrites=true&w=majority"
+}
