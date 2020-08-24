@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const gravatar = require("gravatar");
+const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const User = require("../../models/User");
 // @route POST api/users
@@ -31,11 +32,33 @@ router.post(
       let user = await User.findOne({ email }); // checking if there is email already
       let usernamecheck = await User.findOne({ username }); // checking if there is same username already
       if (user) {
-        res.status(400).json({ errors: [{ msg: "User already exits" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exits" }] });
       } else if (usernamecheck) {
-        res.status(400).json({ errors: [{ msg: "username name exits" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "username name exits" }] });
       }
-      res.send("user route");
+      //using gravator to get gmail user photos
+      const avatar = gravatar.url(email, {
+        s: "200",
+        r: "pg",
+        d: "mm",
+      });
+      user = new User({
+        name,
+        email,
+        username,
+        avatar,
+        password,
+      });
+      //encrypt password
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+      await user.save();
+      //return sason web token
+      res.send("user registered");
     } catch (err) {
       console.error(err.message);
       req.status(500).send("Server Error");
