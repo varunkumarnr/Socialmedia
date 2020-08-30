@@ -110,4 +110,63 @@ router.post(
     }
   }
 );
+//@route GET api/profile
+//@desc Get all  profiles
+//@access Public
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", [
+      "name",
+      "username",
+      "avatar",
+    ]);
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send("server error");
+  }
+});
+//@route GET api/profile/user/:user_id
+//@desc Get profile using id
+//@access Public
+router.get("/user/:user_id", async (req, res) => {
+  //console.log(req.params.user_id);
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate("user", ["name", "username", "avatar"]);
+    if (!profile) {
+      return res.status(400).json({ msg: "404 profile not found" });
+    }
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "404 profile not found" });
+    }
+    return res.status(500).send("server error");
+  }
+});
+//@route GET api/profile/user/:username
+//@desc Get profiles using username
+//@access Public
+router.get("/user/:username", async (req, res) => {
+  console.log(req.params.username);
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.username,
+    }).populate("user", ["name", "username", "avatar"]);
+    if (!profile) {
+      return res.status(400).json({ msg: "404 profile not found" });
+    }
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "404 profile not found" });
+    }
+    return res.status(500).send("server error");
+  }
+});
+
 module.exports = router;
