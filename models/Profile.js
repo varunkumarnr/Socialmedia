@@ -97,6 +97,17 @@ const ProfieSchema = new mongoose.Schema({
       projectlink: {
         type: String,
       },
+      from: {
+        type: Date,
+        required: true,
+      },
+      to: {
+        type: Date,
+      },
+      current: {
+        type: Boolean,
+        default: false,
+      },
       projectdesc: {
         type: String,
       },

@@ -250,7 +250,7 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
   }
 });
 //@route PUT api/profie/education
-//@desc Add profile experience
+//@desc Add profile education
 //@acess Private
 router.put(
   "/education",
@@ -296,4 +296,85 @@ router.put(
     }
   }
 );
+//@route delete api/profie/education/:edu_id
+//@desc delete profile education
+//@acess Private
+router.delete("/education/:edu_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    //get remove index
+    const removeIndex = profile.education
+      .map((item) => item.id)
+      .indexOf(req.params.edu_id);
+    profile.education.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("404 something went wrong:(");
+  }
+});
+//@route add api/profile/project
+//@desc add projects
+//@access Private
+router.put(
+  "/project",
+  [
+    auth,
+    [
+      check("projectname", "project title is required").not().isEmpty(),
+      check("from", "from date is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const {
+      projectname,
+      projectlink,
+      from,
+      to,
+      current,
+      projectdesc,
+    } = req.body;
+    const newproject = {
+      projectname,
+      projectlink,
+      from,
+      to,
+      current,
+      projectdesc,
+    };
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.projects.unshift(newproject);
+      await profile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(400).send("Somthing went wrong try again");
+    }
+  }
+);
+//@route delete  api/profile/project/:project_id
+//@desc delete projects
+//@access Private
+router.delete("/project/:project_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    //get remove index
+    const removeIndex = profile.projects
+      .map((item) => item.id)
+      .indexOf(req.params.project_id);
+    profile.projects.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("404 something went wrong:(");
+  }
+});
+
 module.exports = router;
