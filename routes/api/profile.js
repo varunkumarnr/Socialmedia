@@ -184,4 +184,116 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
+//@route PUT api/profie/experience
+//@desc Add profile experience
+//@acess Private
+router.put(
+  "/experience",
+  [
+    auth,
+    [
+      check("title", "title is required").not().isEmpty(),
+      check("company", "company is required").not().isEmpty(),
+      check("from", "From date is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
+    const newExp = {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    };
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.experience.unshift(newExp);
+      await profile.save();
+      return res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("server error");
+    }
+  }
+);
+//@route Delete api/profie/experience
+//@desc Delete profile experience
+//@acess Private
+router.delete("/experience/:exp_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    //get remove index
+    const removeIndex = profile.experience
+      .map((item) => item.id)
+      .indexOf(req.params.exp_id);
+    profile.experience.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("404 something went wrong:(");
+  }
+});
+//@route PUT api/profie/education
+//@desc Add profile experience
+//@acess Private
+router.put(
+  "/education",
+  [
+    auth,
+    [
+      check("University", "university is required").not().isEmpty(),
+      check("Degreefield", "enter field of study").not().isEmpty(),
+      check("from", "from date is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const {
+      University,
+      Degreefield,
+      from,
+      to,
+      current,
+      description,
+      GPA,
+    } = req.body;
+    const newedu = {
+      University,
+      Degreefield,
+      from,
+      to,
+      current,
+      description,
+      GPA,
+    };
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.education.unshift(newedu);
+      await profile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send("something went wrong");
+    }
+  }
+);
 module.exports = router;

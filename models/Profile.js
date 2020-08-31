@@ -55,7 +55,7 @@ const ProfieSchema = new mongoose.Schema({
         default: false,
       },
       description: {
-        type: Boolean,
+        type: String,
       },
     },
   ],
@@ -79,6 +79,9 @@ const ProfieSchema = new mongoose.Schema({
       current: {
         type: Boolean,
         default: false,
+      },
+      description: {
+        type: String,
       },
       GPA: {
         type: String,
