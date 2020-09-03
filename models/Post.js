@@ -26,28 +26,26 @@ const PostSchema = new mongoose.Schema({
       },
     },
   ],
-  comment: [
+  comments: [
     {
       user: {
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: "users",
-        },
-        text: {
-          type: String,
-          required: true,
-        },
+        type: Schema.Types.ObjectId,
+        ref: "users",
+      },
+      text: {
+        type: String,
+        required: true,
+      },
 
-        username: {
-          type: String,
-        },
-        avatar: {
-          type: String,
-        },
-        date: {
-          type: Date,
-          default: Date.now,
-        },
+      username: {
+        type: String,
+      },
+      avatar: {
+        type: String,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
       },
     },
   ],
