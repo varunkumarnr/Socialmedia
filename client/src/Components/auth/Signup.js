@@ -108,7 +108,7 @@ export const Signup = () => {
             <input type='submit' className='btn btn-primary' value='Signup' />
           </form>
           <p className='my-1'>
-            Already have an account? <Link to='/login'>Sign In</Link>
+            Already have an account? <Link to='/login'>Login</Link>
           </p>
         </div>
       </div>
