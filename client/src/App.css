@@ -20,7 +20,14 @@ body {
   background-color: #fff;
   color: #333;
 }
-
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
 a {
   color: var(--primary-color);
   text-decoration: none;
@@ -99,6 +106,7 @@ img {
   top: 0;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
+  background-color: var(--dark-color);
 }
 .navbar ul {
   display: flex;
@@ -113,6 +121,73 @@ img {
 }
 .navbar li:hover {
   border-bottom: 2px solid white;
+}
+/* From */
+.Login-page {
+  display: flex;
+  justify-content: center;
+}
+.Login-page-right {
+  flex: 1;
+  padding-right: 1.5rem;
+  align-items: flex-start;
+
+  text-align: center;
+}
+.Login-page-left {
+  flex: 1;
+}
+
+.form .form-group {
+  margin: 1.2rem 0;
+}
+.form .form-text {
+  margin-top: 0.3rem;
+  color: #888;
+}
+.Login-page-right .loginpage-color {
+  color: var(--primary-color);
+  font-size: 4rem;
+  line-height: 1.2;
+}
+.Login-page-right .signuplead {
+  color: black;
+  text-align: left;
+}
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  display: flex;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+.my-1 {
+  margin: 1rem 0;
+}
+@media (max-width: 800px) {
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="password"],
+  .form input[type="date"],
+  .form select,
+  .form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+  }
+  .Login-page-right {
+    display: none;
+  }
+  .loginpage-color {
+    color: var(--primary-color);
+  }
 }
 @media (max-width: 700px) {
   .container {

@@ -8,13 +8,13 @@ const HomePage = () => {
         <div className='landing-inner'>
           <h1 className='x-large'>Code Buddy</h1>
           <p className='lead'>
-            Find your perfect Code buddy and design your dream project
+            Find your perfect Code buddy and make your dream team
           </p>
           <div className='buttons'>
-            <Link to='' className='btn btn-primary'>
+            <Link to='/signup' className='btn btn-primary'>
               Sign Up
             </Link>
-            <Link to='' className='btn btn-Light'>
+            <Link to='/login' className='btn btn-Light'>
               Login
             </Link>
           </div>
