@@ -10,7 +10,6 @@ router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     res.json(user);
-    console.log(User);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -33,14 +32,16 @@ router.post(
       let user = await User.findOne({ email });
       // let usernameCheck = await User.findOne({ username });
       if (!user) {
-        return res.status(400).json({ msg: "email does not exist " });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Email does not exist" }] });
       }
       // else if (!usernameCheck) {
       //   return res.status(400).json({ msg: "User name does not exist" });
       // }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        res.status(400).json({ msg: "check your password" });
+        res.status(400).json({ errors: [{ msg: "check your password " }] });
       }
       const payload = {
         user: {
@@ -94,7 +95,9 @@ router.post(
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({ error: "Check your Email and password" });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "check your email and password" }] });
       }
       //return json web token
       const payload = {

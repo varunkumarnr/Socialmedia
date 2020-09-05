@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
 
-export const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormDate] = useState({
     email: "",
     password: "",
@@ -9,9 +12,15 @@ export const Login = () => {
   const { email, password } = formData;
   const onChange = (e) =>
     setFormDate({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = (e) => {
-    console.log("loggedin");
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    login(email, password);
+    console.log(formData);
   };
+  //Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <Fragment>
       <div className='Login-page'>
@@ -32,7 +41,7 @@ export const Login = () => {
                 name='email'
                 value={email}
                 onChange={(e) => onChange(e)}
-                required
+                // required
               />
               <small className='form-text'>
                 This site uses Gravator so make sure your Email as image
@@ -58,3 +67,11 @@ export const Login = () => {
     </Fragment>
   );
 };
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { login })(Login);
