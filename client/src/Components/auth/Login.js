@@ -48,10 +48,10 @@ export const Login = () => {
                 minLength='6'
               />
             </div>
-            <input type='submit' className='btn btn-primary' value='Signup' />
+            <input type='submit' className='btn btn-primary' value='Login' />
           </form>
           <p className='my-1'>
-            Do not have an account? <Link to='/signup'>Sign In</Link>
+            Do not have an account? <Link to='/signup'>Signin</Link>
           </p>
         </div>
       </div>
