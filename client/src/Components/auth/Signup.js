@@ -2,9 +2,10 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
-const Signup = ({ setAlert }) => {
+const Signup = ({ setAlert, register }) => {
   const [formData, setFormDate] = useState({
     name: "",
     username: "",
@@ -39,7 +40,8 @@ const Signup = ({ setAlert }) => {
       //   } catch (err) {
       //     console.error(err.response.data);
       //   }
-      console.log(formData);
+
+      register({ name, username, email, password });
     }
   };
   return (
@@ -64,7 +66,7 @@ const Signup = ({ setAlert }) => {
                 name='name'
                 value={name}
                 onChange={(e) => onChange(e)}
-                required
+                // required
               />
             </div>
             <div className='form-group'>
@@ -74,7 +76,7 @@ const Signup = ({ setAlert }) => {
                 name='username'
                 value={username}
                 onChange={(e) => onChange(e)}
-                required
+                //required
               />
             </div>
             <div className='form-group'>
@@ -84,7 +86,7 @@ const Signup = ({ setAlert }) => {
                 name='email'
                 value={email}
                 onChange={(e) => onChange(e)}
-                required
+                //required
               />
               <small className='form-text'>
                 This site uses Gravator so make sure your Email as image
@@ -122,5 +124,6 @@ const Signup = ({ setAlert }) => {
 };
 Signup.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
-export default connect(null, { setAlert })(Signup);
+export default connect(null, { setAlert, register })(Signup);
