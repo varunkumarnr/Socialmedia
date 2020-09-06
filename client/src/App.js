@@ -9,16 +9,15 @@ import { Provider } from "react-redux";
 import store from "./store";
 import setAuthToken from "./util/SetAuthToken";
 import { loadUser } from "./actions/auth";
+import Dashboard from "./Components/dashboard/Dashboard";
+import PrivateRoute from "./Components/routing/PrivateRoute";
 import "./App.css";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 const App = () => {
   useEffect(() => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-      store.dispatch(loadUser());
-    }
+    store.dispatch(loadUser());
   }, []);
   return (
     <Provider store={store}>
@@ -32,6 +31,10 @@ const App = () => {
             <Switch>
               <Route path='/signup' component={Signup}></Route>
               <Route path='/login' component={Login}></Route>
+              <PrivateRoute
+                path='/dashboard'
+                component={Dashboard}
+              ></PrivateRoute>
             </Switch>
           </section>
         </Fragment>
