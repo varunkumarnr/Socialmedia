@@ -5,6 +5,7 @@ import { getCurrectProfile } from "../../actions/profile";
 import { useEffect } from "react";
 import Loading from "../layout/Loading";
 import { Link } from "react-router-dom";
+import DashboardActions from "./dashboardactions";
 
 const Dashboard = ({
   getCurrectProfile,
@@ -32,7 +33,9 @@ const Dashboard = ({
       </div>
 
       {profile !== null ? (
-        <Fragment>profile</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <p>

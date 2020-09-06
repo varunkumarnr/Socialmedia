@@ -117,6 +117,10 @@ img {
   background: var(--danger-color);
   color: #fff;
 }
+.alert-success {
+  background: var(--success-color);
+  color: white;
+}
 
 /* navbar */
 .navbar {
@@ -196,6 +200,7 @@ img {
 /*  Dashboard */
 .dashboard-welcome {
   margin-bottom: 0rem;
+  font-size: 2rem;
 }
 .dashboard {
   display: flex;
