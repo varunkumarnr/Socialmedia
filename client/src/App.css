@@ -105,6 +105,10 @@ img {
 .btn-Light {
   background: var(--light-color);
 }
+.btn-danger {
+  background: var(--danger-color);
+  color: #fff;
+}
 /* alerts */
 .alert {
   padding: 0.8rem;
@@ -194,9 +198,61 @@ img {
   font-size: 1.2rem;
   border: 1px solid #ccc;
 }
-.my-1 {
-  margin: 1rem 1rem;
+/* Padding */
+.p {
+  padding: 0.5rem;
 }
+.p-1 {
+  padding: 1rem;
+}
+.p-2 {
+  padding: 2rem;
+}
+.p-3 {
+  padding: 3rem;
+}
+.py {
+  padding: 0.5rem 0;
+}
+.py-1 {
+  padding: 1rem 0;
+}
+.py-2 {
+  padding: 2rem 0;
+}
+.py-3 {
+  padding: 3rem 0;
+}
+
+/* Margin */
+.mt-2 {
+  margin-top: 2rem;
+}
+.m {
+  margin: 0.5rem;
+}
+.m-1 {
+  margin: 1rem;
+}
+.m-2 {
+  margin: 2rem;
+}
+.m-3 {
+  margin: 3rem;
+}
+.my {
+  margin: 0.5rem 0;
+}
+.my-1 {
+  margin: 1rem 0;
+}
+.my-2 {
+  margin: 2rem 0;
+}
+.my-3 {
+  margin: 3rem 0;
+}
+
 /*  Dashboard */
 .dashboard-welcome {
   margin-bottom: 0rem;
@@ -215,6 +271,39 @@ img {
 .username {
   font-weight: 500;
   color: gray;
+}
+.form .social-input {
+  display: flex;
+}
+
+.form .social-input i {
+  padding: 0.5rem;
+  width: 4rem;
+}
+
+.form .social-input i.fa-twitter {
+  color: #38a1f3;
+}
+.form .social-input i.fa-facebook {
+  color: #3b5998;
+}
+.form .social-input i.fa-instagram {
+  color: #3f729b;
+}
+.form .social-input i.fa-youtube {
+  color: #c4302b;
+}
+.form .social-input i.fa-linkedin {
+  color: #0077b5;
+}
+.table th,
+.table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table th {
+  background: var(--light-color);
 }
 @media (max-width: 800px) {
   .form input[type="text"],

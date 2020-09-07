@@ -1,14 +1,17 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrectProfile } from "../../actions/profile";
+import { getCurrectProfile, deleteAccount } from "../../actions/profile";
 import { useEffect } from "react";
 import Loading from "../layout/Loading";
 import { Link } from "react-router-dom";
+import DisplayExperience from "./DisplayExperience";
+import DisplayEducation from "./DisplayEducation";
 import DashboardActions from "./dashboardactions";
 
 const Dashboard = ({
   getCurrectProfile,
+  deleteAccount,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -35,6 +38,14 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <DisplayExperience experience={profile.experience} />
+          <DisplayEducation education={profile.education} />
+          <div className='mt-2'>
+            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+              <i className='fas fa-user-minus'></i> Delete Account
+            </button>
+          </div>
+          <small className='form-text'> This action cannot be re done </small>
         </Fragment>
       ) : (
         <Fragment>
@@ -52,6 +63,7 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
   getCurrectProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -60,4 +72,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrectProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrectProfile, deleteAccount })(
+  Dashboard
+);
