@@ -123,15 +123,11 @@ router.post(
 //@access Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", [
-      "name",
-      "username",
-      "avatar",
-    ]);
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
     res.json(profiles);
   } catch (err) {
     console.error(err.message);
-    return res.status(500).send("server error");
+    return res.status(500).json({ msg: "There are no profiles" });
   }
 });
 //@route GET api/profile/user/:user_id
@@ -191,7 +187,7 @@ router.delete("/", auth, async (req, res) => {
     res.json("Removed");
   } catch (err) {
     console.error(err.message);
-    return res.status(500).send("server error");
+    res.status(500).send("Server Error");
   }
 });
 

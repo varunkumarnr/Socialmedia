@@ -14,6 +14,7 @@ import PrivateRoute from "./Components/routing/PrivateRoute";
 import CreateProfile from "./Components/profile-form/CreateProfile";
 import EditProfile from "./Components/profile-form/EditProfile";
 import Expirence from "./Components/profile-form/Expirence";
+import Profiles from "./Components/profiles/Profiles";
 import Education from "./Components/profile-form/Education";
 import "./App.css";
 if (localStorage.token) {
@@ -35,6 +36,7 @@ const App = () => {
             <Switch>
               <Route path='/signup' component={Signup}></Route>
               <Route path='/login' component={Login}></Route>
+              <Route path='/profiles' component={Profiles}></Route>
               <PrivateRoute
                 path='/dashboard'
                 component={Dashboard}
