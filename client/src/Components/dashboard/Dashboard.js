@@ -28,7 +28,7 @@ const Dashboard = ({
           <small className='username'>{user.username}</small>
         </div>
         <div className='dashboard-right'>
-          <img className='dashboard-image' src={user.avatar}></img>
+          <img className='dashboard-image' src={user.avatar} alt='avatar'></img>
         </div>
       </div>
 

@@ -6,6 +6,7 @@ const { check, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 const config = require("config");
+const normalize = require("normalize-url");
 // @route POST api/users
 // @desc register user
 //@access public
@@ -43,11 +44,14 @@ router.post(
           .json({ errors: [{ msg: "username name exits" }] });
       }
       //using gravator to get gmail user photos
-      const avatar = gravatar.url(email, {
-        s: "200",
-        r: "pg",
-        d: "mm",
-      });
+      const avatar = normalize(
+        gravatar.url(email, {
+          s: "200",
+          r: "pg",
+          d: "mm",
+        }),
+        { forceHttps: true }
+      );
       user = new User({
         name,
         email,
