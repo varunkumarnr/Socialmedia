@@ -130,4 +130,4 @@ Expirence.propTypes = {
   addExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(Expirence);
+export default connect(null, { addExperience })(withRouter(Expirence));

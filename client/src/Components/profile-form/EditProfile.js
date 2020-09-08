@@ -45,7 +45,7 @@ const EditProfile = ({
       linkedin: loading || !profile.social ? "" : profile.social.linkedin,
       instagram: loading || !profile.social ? "" : profile.social.instagram,
     });
-  }, [loading]);
+  }, [loading, getCurrectProfile]);
   const {
     company,
     website,
@@ -190,6 +190,7 @@ const EditProfile = ({
                 placeholder='Twitter URL'
                 name='twitter'
                 value={twitter}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -200,6 +201,7 @@ const EditProfile = ({
                 placeholder='YouTube URL'
                 name='youtube'
                 value={youtube}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -210,6 +212,7 @@ const EditProfile = ({
                 placeholder='Linkedin URL'
                 name='linkedin'
                 value={linkedin}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -220,6 +223,7 @@ const EditProfile = ({
                 placeholder='Instagram URL'
                 name='instagram'
                 value={instagram}
+                onChange={(e) => onChange(e)}
               />
             </div>
           </Fragment>

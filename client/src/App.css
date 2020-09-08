@@ -101,6 +101,7 @@ img {
 }
 .btn-primary {
   background: var(--primary-color);
+  color: #fff;
 }
 .btn-Light {
   background: var(--light-color);
@@ -108,6 +109,10 @@ img {
 .btn-danger {
   background: var(--danger-color);
   color: #fff;
+}
+.btn-dark {
+  background: var(--dark-color);
+  color: white;
 }
 /* alerts */
 .alert {
@@ -252,6 +257,13 @@ img {
 .my-3 {
   margin: 3rem 0;
 }
+.btn-primary,
+.bg-primary,
+.badge-primary,
+.alert-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
 
 /*  Dashboard */
 .dashboard-welcome {
@@ -314,7 +326,6 @@ img {
   line-height: 1.8;
   margin-bottom: 1rem;
 }
-
 /* Profile Page */
 .profile-grid {
   display: grid;
@@ -407,6 +418,7 @@ img {
   flex: 3;
   flex-basis: 20%;
 }
+
 .round-img {
   border-radius: 50%;
 }
@@ -446,86 +458,80 @@ img {
   .x-large {
     font-size: 3rem;
   }
+
+  .x-large {
+    font-size: 3rem;
+  }
+
+  .large {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  /* Navbar */
   .navbar {
     display: block;
     text-align: center;
   }
+
+  .navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+
   .navbar h1 {
     margin-bottom: 1rem;
   }
-}
-.x-large {
-  font-size: 3rem;
-}
 
-.large {
-  font-size: 2rem;
-}
+  .navbar .welcome {
+    display: none;
+  }
 
-.lead {
-  font-size: 1rem;
-}
+  /* Profiles Page */
+  .profile {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 
-/* Navbar */
-.navbar {
-  display: block;
-  text-align: center;
-}
+  .profile ul {
+    display: none;
+  }
 
-.navbar ul {
-  text-align: center;
-  justify-content: center;
-}
+  /* Profile Page */
 
-.navbar h1 {
-  margin-bottom: 1rem;
-}
+  .profile-top img,
+  .profile img {
+    width: 200px;
+    margin: auto;
+  }
 
-.navbar .welcome {
-  display: none;
-}
+  .profile-grid {
+    grid-template-areas:
+      "top"
+      "about"
+      "exp"
+      "edu"
+      "github";
+  }
 
-/* Profiles Page */
-.profile {
-  grid-template-columns: 1fr;
-  text-align: center;
-}
+  .profile-about .skills {
+    flex-direction: column;
+  }
 
-.profile ul {
-  display: none;
-}
+  .dash-buttons a {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
 
-/* Profile Page */
-
-.profile-top img,
-.profile img {
-  width: 200px;
-  margin: auto;
-}
-
-.profile-grid {
-  grid-template-areas:
-    "top"
-    "about"
-    "exp"
-    "edu"
-    "github";
-}
-
-.profile-about .skills {
-  flex-direction: column;
-}
-
-.dash-buttons a {
-  display: block;
-  width: 100%;
-  margin-bottom: 0.2rem;
-}
-
-.post {
-  grid-template-columns: 1fr;
-}
-.post a,
-.post button {
-  padding: 0.3rem 0.4rem;
+  .post {
+    grid-template-columns: 1fr;
+  }
+  .post a,
+  .post button {
+    padding: 0.3rem 0.4rem;
+  }
 }
