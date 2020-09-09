@@ -5,6 +5,7 @@ import Loading from "../layout/Loading";
 import { getPosts } from "../../actions/post";
 import { useEffect } from "react";
 import PostItem from "./PostItem";
+import PostFrom from "./PostForm";
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         <i className='fas fa-user'> </i>
         Welcome to community check what is being discussed
       </p>
+      <PostFrom />
       <div className='posts'>
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
