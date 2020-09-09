@@ -4,7 +4,15 @@ import Moment from "react-moment";
 import moment from "moment";
 
 const ProfileEducation = ({
-  education: { school, degree, fieldofstudy, current, to, from, description },
+  education: {
+    school,
+    University,
+    Degreefield,
+    current,
+    to,
+    from,
+    description,
+  },
 }) => (
   <div>
     <h3 className='text-dark'>{school}</h3>
@@ -13,10 +21,10 @@ const ProfileEducation = ({
       {!to ? " Now" : <Moment format='YYYY/MM/DD'>{moment.utc(to)}</Moment>}
     </p>
     <p>
-      <strong>Degree: </strong> {degree}
+      <strong>Degree: </strong> {University}
     </p>
     <p>
-      <strong>Field Of Study: </strong> {fieldofstudy}
+      <strong>Field Of Study: </strong> {Degreefield}
     </p>
     <p>
       <strong>Description: </strong> {description}
