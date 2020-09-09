@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://varun:varun123@socialmedia.mkeha.mongodb.net/socialmedia?retryWrites=true&w=majority",
+  "jwtsecret": "mysecreattoken",
+  "githubClientId": "5db7e17991a4dce471e3",
+  "githubSecret": "ef2f50181578b5b0d0de4414899ee4303de43a93"
+}
